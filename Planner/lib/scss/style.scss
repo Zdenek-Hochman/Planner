@@ -1,0 +1,720 @@
+@charset "UTF-8";
+@import 'base';
+
+$GrayColor: #A1A1A1;
+$BlueColor: #0459AB;
+$BlackColor: #1A1A1A;
+
+@mixin cursor($cursor)
+{
+    cursor: $cursor;
+    cursor: -moz-$cursor;
+    cursor: webkit-$cursor;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active
+{
+    -webkit-box-shadow: 0 0 0 1000px lighten($BlackColor, 10%) inset;
+    -webkit-text-fill-color: darken(white, 20%);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+*
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+label, p, input, span, li, button
+{
+    font-family: Jura;
+}
+
+body
+{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+header
+{
+    display: flex;
+    justify-content: center;
+}
+
+#NavMenu
+{
+    position: absolute;
+    background-color: $BlueColor;
+    width: 100%;
+    min-height: 3vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    #Logo
+    {
+        width: 2vw;
+        height: 3vh;
+        background-color: green;
+    }
+    #User
+    {
+        form
+        {
+            display: inline-flex;
+            input
+            {
+                margin: 0px 1em;
+                color: white;
+                font-weight: bold;
+                transition: 0.1s linear;
+                cursor: pointer;
+                &:hover
+                {
+                    font-size: 14px;
+                    transition: 0.1s linear;
+                }
+            }
+        }
+    }
+}
+
+#MainMenu, #SecondMenu
+{
+    min-height: 9vh;
+    width: 100%;
+    background-color: $BlackColor;
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2;
+    top: 22px;
+
+    .SettingMenu, .ToolsMenu
+    {
+        &::before
+        {
+            color: white;
+            position: relative;
+            font-weight: bold;
+            font-family: Jura;
+            display: block;
+            text-align: center;
+            border-bottom: 2px solid $BlueColor;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            font-size: 11px;
+        }
+        ul
+        {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            li
+            {
+                color: white;
+                font-size: 10px;
+                margin: 0px 1.8vw;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: 0.3s linear;
+                &:hover > .icon svg, &:hover label > .icon svg
+                {
+                    fill: $BlueColor;
+                    transform: scale(0.9);
+                }
+                &:first-child
+                {
+                    margin-left: 0;
+
+                    .CheckedButton
+                    {
+                        background-color: #0459AB;
+                    }
+                }
+                &:last-child
+                {
+                    margin-right: 0;
+                }
+                span
+                {
+                    margin-left: 5px;
+                }
+
+                .CheckedButton
+                {
+                    width: 4px;
+                    height: 100%;
+                    background-color: #333;
+                    display: flex;
+                }
+
+                label
+                {
+                    cursor: pointer;
+                    display: flex;
+                    input[type="radio"]
+                    {
+                        display: none;
+                    }
+                    .icon
+                     {
+                        display: flex;
+                     }
+                     span
+                     {
+                         display: flex;
+                         align-items: center;
+                     }
+                }
+
+                .SubMenu
+                {
+                    position: absolute;
+                    padding: 0;
+
+                    .SubItem
+                    {
+
+                    }
+                }
+            }
+        }
+    }
+    #ProjectSetting::before{content: 'Vytvoreni projektu'}
+    #FurnitureSetting::before{content: 'Nastaveni projektu'}
+    #FurnitureRotateSetting::before{content: 'Zarovnani objektu'}
+}
+
+#SecondMenu
+{
+    position: absolute;
+    width: 40%;
+    height: 40px;
+    z-index: 0;
+    top: 89vh;
+    min-height: 0;
+    align-items: center;
+    border-left: 5px solid #0459AB;
+    border-right: 5px solid #0459AB;
+    border-radius: 8px;
+
+    .icon { margin-left: 5px; }
+}
+
+#CustomResize
+{
+    width: 100%;
+    height: 30px;
+    background-color: $BlackColor;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid $BlueColor;
+    form
+    {
+        display: flex;
+        align-items: center;
+        input
+        {
+            margin-right: 3em;
+            width: 12em;
+            border-left: 1.5px solid $BlueColor;
+            padding-left: 4px;
+            caret-color: transparent;
+            color: white;
+            border-radius: 0px 5px 5px 0px;
+            //background: url("../../img/CM.png") no-repeat center right;
+            //background-size: contain;
+            &:hover
+            {
+                transition: 0.2s linear;
+                background-color: lighten($BlackColor, 3%);
+            }
+            &:focus
+            {
+                transition: 0.2s linear;
+                background-color: lighten($BlackColor, 10%);
+            }
+            &::placeholder
+            {
+                color: darken(white, 20%);
+            }
+        }
+    }
+    label
+    {
+        color: white;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+}
+
+#ZoomSlider
+{
+    input
+    {
+        position: absolute;
+        right: -9rem;
+        top: 50%;
+
+        appearance: none;
+        -webkit-appearance: none;
+        width: 350px;
+        outline: none;
+        transform: rotate(-90deg);
+        &::-webkit-slider-runnable-track
+        {
+            opacity: 0.8;
+            -webkit-appearance: none;
+            background-color: black;
+            border-radius: 15px;
+        }
+        &::-webkit-slider-thumb
+        {
+            appearance: none;
+            -webkit-appearance: none;
+            height: 20px;
+            width: 50px;
+            background-color: blue;
+            border-radius: 15px;
+            &:hover, &:active
+            {
+                background-color: lighten($BlueColor, 5%);
+            }
+        }
+    }
+}
+
+#ZoomDisplay
+{
+    position: absolute;
+    top: 89px;
+    right: 0;
+    width: 10vw;
+    height: 18px;
+    background-color: rgba(0,0,0,0.7);
+    span
+    {
+        color: white;
+        font-weight: bold;
+        padding-left: 0.5vw;
+    }
+
+}
+
+#DirectionDisplay
+{
+    @extend #ZoomDisplay;
+    left: 0;
+    right: initial;
+    span
+    {
+        color: white;
+        font-weight: bold;
+        padding-left: 0.5vw;
+    }
+}
+
+#FurnitureList
+{
+    height: 16vh;
+    position: fixed;
+    top: 50%;
+    margin-top: -13vh;
+    left: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border-top: 5vh solid transparent;
+    border-left: 2vw solid rgba(0,0,0,0.5);
+    border-bottom: 5vh solid transparent;
+    #ListButton
+    {
+        height: 15.8vh;
+        position: fixed;
+        top: 50%;
+        margin-top: -13vh;
+        background-color: transparent;
+        cursor: pointer;
+        border-top: 5.1vh solid transparent;
+        border-left: 2vw solid #EAEAEA;
+        border-bottom: 5vh solid transparent;
+        margin-left: -2.2vw;
+        &:hover
+        {
+            border-left: 2vw solid lighten(#EAEAEA, 3%);
+        }
+        &::after
+        {
+            position: fixed;
+            content: "";
+            border-top: 1.2vh solid transparent;
+            border-left: 1vw solid $GrayColor;
+            border-bottom: 1.2vh solid transparent;
+            top: 50%;
+            margin-top: -1.5vh;
+            margin-left: -1.5vw;
+            transition: 0.3s linear;
+        }
+    }
+    #List
+    {
+        display: none;
+        flex-direction: column;
+        opacity: 1; //0.8
+        width: 0vw; //9
+      //  min-width: 23vw;
+        height: 44vh;
+        position: fixed;
+        left: 0;
+        top: 50%;
+        margin-top: -22vh;
+        background-color: $BlackColor;
+        cursor: default;
+        border-radius: 0px 5px 5px 0px;
+        .ListSelect
+        {
+            width: 100%;
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid lighten($BlueColor, 20%);
+            cursor: pointer;
+            &:hover
+            {
+                background-color: black;
+                font-size: 16.5px;
+                transition: 0.3s linear;
+            }
+            span
+            {
+                word-spacing: 15px;
+                color: white;
+                font-weight: bold;
+            }
+        }
+        .ListSelect:first-child{ border-radius: 0px 5px 0px 0px; }
+        .ListSelect:last-child{ border-radius: 0px 0px 5px 0px; border:none; }
+        //Second Content
+        #ListTitle
+        {
+            width: 91%;
+            height: 35px;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-self: center;
+            margin-top: 10px;
+            border-radius: 0px 5px 0px 0px;
+            margin-left: -0.4vw;
+            span
+            {
+                color: white;
+                font-weight: bold;
+                font-size: 15px;
+                display: flex;
+                align-self: center;
+                margin-left: 8px;
+                border-left: 2px solid blue;
+                padding-left: 6px;
+            }
+        }
+        ul
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar
+            {
+                width: 7px;
+                background-color: transparent;
+            }
+            &::-webkit-scrollbar-thumb
+            {
+                width: 7px;
+                background-color: #0459AB;
+                &:hover
+                {
+                    background-color: lighten($BlueColor, 10%);
+                }
+            }
+            li.ListItem
+            {
+                margin-bottom: 15px;
+                padding: 4px;
+                border-bottom: 2px solid $BlueColor;
+                background-color: #222222;
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+
+                width:8.47vw;
+                height: 11.8vw; //24vh
+                &:hover
+                {
+                    transform: scale(1.04);
+                    transition: 0.3s ease-in-out;
+                }
+                .ListImg
+                {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: center;
+                    position: relative;
+                    img
+                    {
+                        width:8.47vw;
+                        height: 8.47vw; //17vh
+                    }
+                    svg
+                    {
+                        display: flex;
+                        align-self: flex-end;
+                        position: absolute;
+                        top: 0;
+                        margin: 2px 0px 0px -2px;
+                        transition: 0.2s linear;
+                        &:hover
+                        {
+                            fill: $BlueColor;
+                            width: 19px;
+                            height: 19px;
+                            transition: 0.2s linear;
+                        }
+                    }
+                    .NameOfMesh
+                    {
+                        position: absolute;
+                        background-color: rgba(0,0,0,0.6);
+                        width: 8.5vw; //130
+                        height: 1.6vw;
+                        margin-top: -5px;
+                        span
+                        {
+                            font-weight: bold;
+                            color: white;
+                            font-size: 0.71vw; //11px
+                            line-height: 1.6vw;
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+                .ListDesc
+                {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 5px 0px 2px 0px;
+                    span
+                    {
+                        font-size: 0.78vw; //12
+                        color: white;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        #ListActionMenu
+        {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 15%;
+            #Filtr
+            {
+                width: 95%;
+                background-color: rgba(0,0,0,0.1);
+                margin-top: 3vh; //1.3
+                display: flex;
+                flex-wrap: wrap;
+                span
+                {
+                    position: absolute;
+                    bottom: 14.4vh;
+                    font-weight: bold;
+                    font-size: 11px;
+                    color: white;
+                    padding-left: 5px;
+                    border-left: 2px solid blue;
+                }
+                .Filtrs
+                {
+                    display: flex;
+                    width: calc(96% * (1/2));
+                    margin: 2%;
+                    &:nth-child(1n)
+                    {
+                        margin-left: 0%;
+                    }
+                    label
+                    {
+                        color: white;
+                        font-weight: bold;
+                        line-height: 0.9;
+                        font-size: 12px;
+                        padding-left: 0.3vw;
+                    }
+                }
+            }
+            #ListNext
+            {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                width: 95%;
+                min-height: 2.8vh;
+                background-color: rgba(0,0,0,0.3);
+                span
+                {
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: white;
+                }
+                svg:last-child
+                {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        #IncreaseButton
+        {
+            position: absolute;
+            display: flex;
+            align-self: flex-end;
+            bottom: 0;
+            margin: 10px -10px;
+            width: 21vw;
+            justify-content: space-between;
+            span
+            {
+                position: relative;
+                display: flex;
+                align-self: center;
+                margin-left: 20px;
+                font-weight: bold;
+                color: white;
+                font-size: 1vw;
+            }
+            #ListIncrease
+            {
+                width: 12.7vw;
+                height: 4.3vh;
+                background: #333;
+                border-radius: 50px;
+                display: flex;
+                position: relative;
+                &::before
+                {
+                    content: 'Rozsireny';
+                    position: absolute;
+                    left: 0.8vw; //13
+                    color: #26ca28;
+                    font-size: 1.04vw; //16
+                    font-family: Jura;
+                    font-weight: bold;
+                    display: flex;
+                    align-self: center;
+                }
+                &::after
+                {
+                    @extend #ListIncrease::before;
+                    content: 'Zakladni';
+                    left: 7vw; //108
+                    color: $BlueColor;
+                }
+                label
+                {
+                    display: block;
+                    width: 5.5vw; //85
+                    height: 3vh; //22
+                    top: 50%;
+                    margin-top: -1.5vh;
+                    border-radius: 50px;
+                    transition: all .5s ease;
+                    cursor: pointer;
+                    position: absolute;
+                    z-index: 1;
+                    left: 0.8vw; //12
+                    background: $BlueColor;
+                }
+                input[type="checkbox"]
+                {
+                    display: none;
+                    &:checked ~ label
+                    {
+                        left: 6.5vw; //100
+                        background: #26ca28;
+                    }
+                }
+            }
+        }
+    }
+    .ActiveList::after
+    {
+        transform: rotate(180deg);
+        transition: 0.3s linear;
+    }
+}
+
+#View, #SVGContainer
+{
+    overflow: hidden;
+    @include cursor(grab);
+    &:active, &:focus
+    {
+        @include cursor(grabbing);
+    }
+}
+
+//Svg Elements
+
+.DragCircle
+{
+    fill: white;
+    stroke: $BlueColor;
+    stroke-opacity: 1;
+    stroke-width: 2.5px;
+    cursor: pointer;
+    &:hover, &:focus, &:active
+    {
+       // r: 6;
+    }
+}
+
+.Move
+{
+    stroke: $BlueColor;
+    stroke-opacity: 1;
+    stroke-width: 2.5px;
+    cursor: move;
+}
+
+.Rotate
+{
+    stroke: black;
+    stroke-width: 3px;
+    fill: none;
+}
+
+.RotateButton
+{
+    fill: orange;
+}
